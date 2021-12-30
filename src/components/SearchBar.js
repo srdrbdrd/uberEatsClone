@@ -1,49 +1,46 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { View, Text, TextInput } from 'react-native';
+//Google places not used due to priced api
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
-const SearchBar = () => {
+const SearchBar = ({ cityHandler }) => {
     return (
-        <View style={{ marginTop: 15, flexDirection: 'row' }}>
-            <GooglePlacesAutocomplete
+        <View style={{ marginTop: 15, flexDirection: 'row', backgroundColor: "#eee", borderRadius: 50 }}>
+
+            <View style={{ marginLeft: 10, justifyContent: 'center' }}>
+                <Ionicons name="location-sharp" size={24} />
+            </View>
+
+            <TextInput
+                onSubmitEditing={(value) => value.nativeEvent.text.length > 1 ? cityHandler(value.nativeEvent.text) : null}
                 placeholder='Search'
-                styles={{
-                    textInput: {
-                        backgroundColor: '#eee',
-                        borderRadius: 20,
-                        fontWeight: "700",
-                        marginTop: 7
-                    },
-                    textInputContainer: {
-                        backgroundColor: "#eee",
-                        borderRadius: 50,
-                        flexDirection: "row",
-                        alignItems: "center",
-                        marginRight: 10
-                    }
+                style={{
+                    backgroundColor: '#eee',
+                    borderRadius: 20,
+                    fontWeight: "700",
+                    alignItems: "center",
+                    marginRight: 10,
+                    flex: 1
                 }}
-
-                renderLeftButton={() => (
-                    <View style={{ marginLeft: 10 }}>
-                        <Ionicons name="location-sharp" size={24} />
-                    </View>
-                )}
-
-                renderRightButton={() => (
-                    <View style={{
-                        flexDirection: 'row',
-                        marginRight: 8,
-                        backgroundColor: "white",
-                        padding: 9,
-                        borderRadius: 30,
-                        alignItems: "center"
-                    }}>
-                        <AntDesign name='clockcircle' size={11} style={{ marginRight: 6 }} />
-                        <Text>Search</Text>
-                    </View>
-                )}
             />
+
+            <View style={{
+                flexDirection: 'row',
+                marginRight: 8,
+                backgroundColor: "white",
+                padding: 9,
+                borderRadius: 30,
+                alignItems: "center",
+                height: '80%',
+                justifyContent: 'center',
+                alignSelf: 'center'
+
+            }}>
+                <AntDesign name='clockcircle' size={11} style={{ marginRight: 6 }} />
+                <Text>Search</Text>
+            </View>
+
+
         </View>
     )
 }
