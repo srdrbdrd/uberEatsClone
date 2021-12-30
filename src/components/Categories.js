@@ -35,6 +35,7 @@ const items = [
 ];
 
 const Categories = () => {
+    //Flatlist usage could be better
     return (
         <View
             style={{
