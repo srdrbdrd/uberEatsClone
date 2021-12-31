@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, SafeAreaView, ScrollView } from 'react-native'
+import BottomTabs from '../components/BottomTabs';
 import Categories from '../components/Categories';
 import HeaderTabs from '../components/HeaderTabs';
 import RestaurantItems, { localRestaurants } from '../components/RestaurantItems';
@@ -47,7 +48,8 @@ const Home = () => {
                 <Categories />
                 <RestaurantItems restaurantData={restaurantData} />
             </ScrollView>
-
+            <View style={{ height: 2, backgroundColor: 'grey' }} />
+            <BottomTabs />
         </SafeAreaView>
     )
 }
