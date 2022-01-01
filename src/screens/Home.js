@@ -48,7 +48,7 @@ const Home = () => {
                 <Categories />
                 <RestaurantItems restaurantData={restaurantData} />
             </ScrollView>
-            <View style={{ height: 2, backgroundColor: 'grey' }} />
+            <View style={{ height: 1, backgroundColor: 'grey' }} />
             <BottomTabs />
         </SafeAreaView>
     )
