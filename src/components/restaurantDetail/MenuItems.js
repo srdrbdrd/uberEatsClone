@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, Image, ScrollView } from 'react-native'
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 
 
@@ -54,10 +55,12 @@ const MenuItems = () => {
                         justifyContent: 'space-between',
                         margin: 20,
                     }}>
+                        <BouncyCheckbox iconStyle={{ borderColor: "lightgray", borderRadius: 0 }}
+                            fillColor='green' />
                         <FoodInfo food={food} />
                         <FoodImage food={food} />
                     </View>
-                    <View style={{ height: 1, backgroundColor: 'grey' }} />
+                    <View style={{ height: 1, backgroundColor: 'grey', marginHorizontal: 20 }} />
                 </View>))}
         </ScrollView>
     );

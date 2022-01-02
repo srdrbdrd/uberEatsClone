@@ -1,17 +1,29 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
 
-const image = "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg";
 
-const title = 'Farmhouse Kitchen Thai Cuisine'
+const yelpRestaurantInfo = {
+    name: "Farmhouse Kitchen Thai Cuisine",
+    image: "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg",
+    price: '$$',
+    reviews: '1500',
+    rating: '5',
+    categories: [{ title: "Thai" }, { title: "Comfort Food" }],
+};
 
-const description = "Thai - Comfort Food - $$ - 🎫 - 4 ⭐ (2913+)";
 
-const About = () => {
+const About = (props) => {
+    const { name, image, price, reviews, rating, categories } = props.route.params;
+
+    const formattedCategories = categories.map((cat) => cat.title).join('•');
+
+    const description = `${formattedCategories} ${price ? '•' + price : ""} • 🎫 • ${rating} ⭐ (${reviews}+)`;
+
+
     return (
         <View>
             <RestaurantImage image={image} />
-            <RestaurantTitle text={title} />
+            <RestaurantTitle name={name} />
             <RestaurantDescription description={description} />
         </View>
     )
@@ -27,7 +39,7 @@ const RestaurantTitle = (props) => (
         fontWeight: "600",
         marginTop: 10,
         marginHorizontal: 15
-    }}>{props.text}</Text>
+    }}>{props.name}</Text>
 )
 
 const RestaurantDescription = (props) => (
