@@ -1,31 +1,41 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
+import { useSelector } from 'react-redux'
 
 const ViewCart = () => {
+    const items = useSelector((state) => state.cartReducer.selectedItems.items)
+
+    const total = items
+        .map((item) => Number(item.price))
+        .reduce((prev, curr) => prev + curr, 0);
     return (
-        <View style={{
-            flex: 1, alignItems: 'center', flexDirection: 'row', position: 'absolute',
-            bottom: 40,
-            zIndex: 999
-        }}>
-            <View style={{
-                flexDirection: 'row',
-                justifyContent: 'center',
-                width: '100%'
-            }}>
+        <>
+            {total ?
+
+
                 <TouchableOpacity style={{
-                    marginTop: 20,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
                     backgroundColor: 'black',
                     alignItems: 'center',
-                    padding: 13,
+                    padding: 15,
+                    paddingHorizontal: 40,
                     borderRadius: 30,
-                    width: 300,
+
+                    position: 'absolute',
+                    bottom: 40,
+                    zIndex: 999,
+                    alignSelf: 'center',
+
 
                 }}>
-                    <Text style={{ color: 'white', fontSize: 20 }}>View Cart</Text>
+                    <Text style={{ color: 'white', fontSize: 20, marginRight: 30 }}>View Cart</Text>
+                    <Text style={{ color: 'white', fontSize: 20 }}>{total + "$"}</Text>
                 </TouchableOpacity>
-            </View>
-        </View>
+
+                : null
+            }
+        </>
     )
 }
 

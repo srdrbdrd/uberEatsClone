@@ -10,7 +10,7 @@ const RestaurantDetail = ({ route, navigation }) => {
             <About route={route} />
 
             <View style={{ height: 1, backgroundColor: 'grey' }} />
-            <MenuItems />
+            <MenuItems restaurantName={route.params.name} />
             <ViewCart navigation={navigation} restaurantName={route.params.name} />
         </View>
     )
