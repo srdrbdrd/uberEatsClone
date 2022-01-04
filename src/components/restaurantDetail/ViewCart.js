@@ -11,8 +11,6 @@ const ViewCart = () => {
     return (
         <>
             {total ?
-
-
                 <TouchableOpacity style={{
                     flexDirection: 'row',
                     justifyContent: 'center',
