@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native'
 import { useSelector } from 'react-redux'
 import OrderItem from './OrderItem';
 
-const ViewCart = () => {
+const ViewCart = ({ navigation }) => {
 
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -74,7 +74,7 @@ const ViewCart = () => {
                                     position: "relative",
                                 }}
                                 onPress={() => {
-
+                                    navigation.navigate("OrderCompleted");
                                     setModalVisible(false);
                                 }}
                             >
