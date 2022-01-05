@@ -1,3 +1,4 @@
+import AnimatedLottieView from 'lottie-react-native';
 import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native'
 import { useSelector } from 'react-redux'
@@ -6,7 +7,7 @@ import OrderItem from './OrderItem';
 const ViewCart = ({ navigation }) => {
 
     const [modalVisible, setModalVisible] = useState(false);
-
+    const [loading, setLoading] = useState(false)
     const { items, restaurantName } = useSelector((state) => state.cartReducer.selectedItems)
 
     const total = items
@@ -74,8 +75,15 @@ const ViewCart = ({ navigation }) => {
                                     position: "relative",
                                 }}
                                 onPress={() => {
-                                    navigation.navigate("OrderCompleted");
+                                    setLoading(true);
                                     setModalVisible(false);
+                                    setTimeout(() => {
+                                        setLoading(false);
+
+
+                                        navigation.navigate("OrderCompleted");
+                                    }, 2500)
+
                                 }}
                             >
                                 <Text style={{ color: "white", fontSize: 20 }}>Checkout</Text>
@@ -132,6 +140,23 @@ const ViewCart = ({ navigation }) => {
 
                 : null
             }
+            {loading ? <View style={{
+                backgroundColor: "black",
+                position: "absolute",
+                opacity: 0.6,
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
+                width: "100%",
+                zIndex: 999
+            }}>
+                <AnimatedLottieView style={{ height: 200 }}
+                    source={require('../../assets/animations/scanner.json')}
+                    autoPlay
+                    speed={3}
+                />
+
+            </View> : null}
         </>
     )
 }
